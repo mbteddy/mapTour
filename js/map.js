@@ -6,25 +6,29 @@ var tour5 = {name: "place", lat:27.0998708, lng: -82.4544132}
 
 var fakeData = [tour1, tour2, tour3, tour4, tour5];
 
+
+// Function to draw map
 var drawMap = function() {
   var map = L.map('container').setView([35, -94], 4);
   var layer = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png');
   layer.addTo(map)
-  customBuild(fakeData, map)
+  customBuild(fakeData, map); 
 }
 
+// Loop through your data and add the appropriate layers and points
 var customBuild = function(data, map) {
-	for (var i=0; i<fakeData.length; i++) {
-		console.log(data[i])
-	    var lat = data[i]["lat"];
-	    console.log(lat)
-	    var lng = data[i]["lng"];
-	    console.log(lng)
-	    var circ = L.circleMarker([lat, lng], {
-	      radius: 5,
-	    });
-	    circ.bindPopup(data[i]["name"]);
-	    circ.setStyle({color: 'blue', fillColor: 'blue'});
-	    circ.addTo(map);
-	}
+ 
+  for (var i=0; i<data.length;i++) {
+      var lat = data[i]["lat"];
+      var lng = data[i]["lng"];
+      var circ = L.circleMarker([lat, lng], {
+        radius: 5,
+      });
+      circ.bindPopup(data[i]["name"]);
+      circ.setStyle({color: 'blue', fillColor: 'blue'});
+      circ.addTo(map);
+      
+  }
+
+
 }
